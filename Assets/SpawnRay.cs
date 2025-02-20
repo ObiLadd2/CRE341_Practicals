@@ -1,5 +1,5 @@
 using System;
-
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.ProBuilder.MeshOperations;
 
@@ -19,10 +19,7 @@ public class SpawnRay : MonoBehaviour
    
      RaycastHit hit ;   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
+   
 
     // Update is called once per frame
 private void Update()
@@ -52,7 +49,7 @@ private void Update()
 
     private void Spawn()
     {
-        if (MaxSpawnAmount > spawnAmount) 
+        if (MaxSpawnAmount > spawnAmount) //checks the amount of spawned objects compare tha max amount.
             
             if (timer >= coolDown)
             {
@@ -70,7 +67,7 @@ private void Update()
                 timer = 0;
             }
 
-        if (timer == 0)
+        if (timer == 0) //resets the tiemr for the spawner
         {
             canSpawn = false;
         }
