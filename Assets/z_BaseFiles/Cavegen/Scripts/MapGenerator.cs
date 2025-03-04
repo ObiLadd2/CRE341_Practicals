@@ -21,7 +21,7 @@ public class MapGenerator : MonoBehaviour {
 	[Range(0,58)]
 	public int randomFillPercent;
 
-	[SerializeField] int numberOfNPCs = 5;
+	//[SerializeField] int numberOfNPCs = 5;
 	[SerializeField] List<GameObject> npcs = new List<GameObject>();
 	[SerializeField] int numberWaypoints = 4;
 	[SerializeField] List<GameObject> waypoints = new List<GameObject>();
@@ -48,7 +48,7 @@ public class MapGenerator : MonoBehaviour {
         PlacePlayer();
 
 		SpawnWayPoints(numberWaypoints);
-		SpawnNPCs(numberOfNPCs);
+		//SpawnNPCs(numberOfNPCs);
 	}
 
 
@@ -68,7 +68,7 @@ public class MapGenerator : MonoBehaviour {
 			foreach (GameObject wp in go_wps) Destroy(wp);
 
 			SpawnWayPoints(numberWaypoints);
-			SpawnNPCs(numberOfNPCs);
+			//SpawnNPCs(numberOfNPCs);
 		}
 	}
 
@@ -490,42 +490,42 @@ public class MapGenerator : MonoBehaviour {
         Debug.LogWarning("No valid 'Ground' point found.");
         return Vector3.zero;
 	}
-	private void SpawnNPCs(int count)
-	{
-		int maxAttempts = 1000;
-		for (int i = 0; i < count; i++)
-		{
-			Vector3 randomNPCPos = Vector3.zero;
-			bool validPositionFound = false;
-			int attempts = 0;
+	//private void SpawnNPCs(int count)
+	//{
+	//	int maxAttempts = 1000;
+	//	for (int i = 0; i < count; i++)
+	//	{
+	//		Vector3 randomNPCPos = Vector3.zero;
+	//		bool validPositionFound = false;
+	//		int attempts = 0;
 
-			while (!validPositionFound && attempts < maxAttempts)
-			{
-				randomNPCPos = GetRandomGroundPoint();
-				if (randomNPCPos != Vector3.zero)
-				{
-					NavMeshHit hit;
-					if (NavMesh.SamplePosition(randomNPCPos, out hit, 1.0f, NavMesh.AllAreas))
-					{
-						randomNPCPos = hit.position;
-						validPositionFound = true;
-					}
-				}
-				attempts++;
-			}
+	//		while (!validPositionFound && attempts < maxAttempts)
+	//		{
+	//			randomNPCPos = GetRandomGroundPoint();
+	//			if (randomNPCPos != Vector3.zero)
+	//			{
+	//				NavMeshHit hit;
+	//				if (NavMesh.SamplePosition(randomNPCPos, out hit, 1.0f, NavMesh.AllAreas))
+	//				{
+	//					randomNPCPos = hit.position;
+	//					validPositionFound = true;
+	//				}
+	//			}
+	//			attempts++;
+	//		}
 
-			if (validPositionFound)
-			{
-				Instantiate(npcPrefab, randomNPCPos, Quaternion.identity);
-				// add the NPC to the list
-				npcs.Add(npcPrefab);
-			}
-			else
-			{
-				Debug.LogWarning("Failed to find a valid NavMesh point for NPC.");
-			}
-		}
-	}
+	//		if (validPositionFound)
+	//		{
+	//			Instantiate(npcPrefab, randomNPCPos, Quaternion.identity);
+	//			// add the NPC to the list
+	//			npcs.Add(npcPrefab);
+	//		}
+	//		else
+	//		{
+	//			Debug.LogWarning("Failed to find a valid NavMesh point for NPC.");
+	//		}
+	//	}
+	//}
 
     private void SpawnWayPoints(int count)
 	{

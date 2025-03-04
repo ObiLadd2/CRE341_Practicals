@@ -10,6 +10,8 @@ TagManager:
   - NPC
   - Waypoint
   - Flocker
+  - Trap
+  - Broke
   layers:
   - Default
   - TransparentFX
