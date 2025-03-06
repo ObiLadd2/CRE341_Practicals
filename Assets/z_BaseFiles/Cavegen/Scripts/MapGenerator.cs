@@ -10,7 +10,7 @@ using UnityEditor.ShaderGraph.Internal;
 public class MapGenerator : MonoBehaviour {
 
 	public GameObject player; // Reference to your player prefab
-	public GameObject npcPrefab, waypointsPrefab; // Reference to your NPC prefab
+	//public GameObject npcPrefab, waypointsPrefab; // Reference to your NPC prefab
 	public GameObject groundObject;
 	public int width;
 	public int height;
@@ -80,7 +80,10 @@ public class MapGenerator : MonoBehaviour {
 			SmoothMap();
 		}
 
-		ProcessMap ();
+		ClearMapMiddle();
+
+
+        ProcessMap ();
 
 		int borderSize = 1;
 		int[,] borderedMap = new int[width + borderSize * 2,height + borderSize * 2];
@@ -353,7 +356,20 @@ public class MapGenerator : MonoBehaviour {
 		}
 	}
 
-	void SmoothMap() {
+    void ClearMapMiddle()
+    {
+
+        for (int x = 50; x < width-50; x++)
+        {
+            for (int y =50; y < height-50; y++)
+            {
+                map[x, y] = 0;
+            }
+        }
+    }
+
+
+    void SmoothMap() {
 		for (int x = 0; x < width; x ++) {
 			for (int y = 0; y < height; y ++) {
 				int neighbourWallTiles = GetSurroundingWallCount(x,y);
@@ -551,16 +567,16 @@ public class MapGenerator : MonoBehaviour {
 				attempts++;
 			}
 
-			if (validPositionFound)
-			{
-				Instantiate(waypointsPrefab, randomNPCPos, Quaternion.identity);
-				// add the NPC to the list
-				waypoints.Add(waypointsPrefab);
-			}
-			else
-			{
-				Debug.LogWarning("Failed to find a valid NavMesh point for Waypoint.");
-			}
+			////if (validPositionFound)
+			////{
+			////	Instantiate(waypointsPrefab, randomNPCPos, Quaternion.identity);
+			////	// add the NPC to the list
+			////	waypoints.Add(waypointsPrefab);
+			////}
+			//else
+			//{
+			//	Debug.LogWarning("Failed to find a valid NavMesh point for Waypoint.");
+			//}
 		}
     }
 

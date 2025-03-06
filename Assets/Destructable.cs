@@ -14,8 +14,8 @@ public class Destructable : MonoBehaviour
     public float health = 100;
 
     //private Transform brokenObject;
+    
 
-   
     public float Health
     {
         set

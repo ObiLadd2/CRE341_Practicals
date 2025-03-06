@@ -25,7 +25,7 @@ public class NPCmanager : MonoBehaviour
     {
         timer += Time.deltaTime;
         Spawn();
-       Debug.Log(npcAmount);
+      // Debug.Log(npcAmount);
     }
     private void Spawn()
     {

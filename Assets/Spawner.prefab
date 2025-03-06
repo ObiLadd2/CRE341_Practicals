@@ -123,7 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcAmount: 0
   npcMaxAmount: 10
-  NPCprefab: {fileID: 2286358169494211035, guid: a884620a414a9f948867359c297b2ae6, type: 3}
+  NPCprefab: {fileID: 8323601937358741148, guid: ff8b7b7d55a842b49ac0f9b0962a718e, type: 3}
   timer: 0
   coolDown: 10
   canSpawn: 0

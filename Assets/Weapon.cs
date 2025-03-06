@@ -7,27 +7,24 @@ public class Weapon : MonoBehaviour
 {
     //public GameObject SparksVFX;
     //public GameObject SparkPoint;
-    [SerializeField] private float _damage;
+     public float damage;
     
-    private void OnTriggerEnter(Collider col)
+    public void OnTriggerEnter(Collider col)
     {
-        if (col.CompareTag("NPC") )
+        if (col.gameObject.CompareTag("broke"))
         {
-            Debug.Log("Hit");
-            //Sparks();
-            //SoundManager.Playsound(SoundType.SwordHit);
+            Debug.Log(col.name );
+           
             Destructable destructable = col.GetComponent<Destructable>();
 
             if (destructable != null)
             {
-                destructable.Health -= _damage;
+                destructable.health -= damage;
 
             }
 
         }
     }
-    //private void Sparks()
-    //{
-    //    Instantiate(SparksVFX, SparkPoint.transform.position, SparkPoint.transform.rotation);
-    //}
+    
+
 }

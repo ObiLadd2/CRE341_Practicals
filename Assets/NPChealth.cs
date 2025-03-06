@@ -7,9 +7,9 @@ using UnityEngine.UIElements;
 public class NPChealth : MonoBehaviour
 {
 
-    
 
-    public float health = 100;
+
+    [SerializeField] private float health;
 
     
 
