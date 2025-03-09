@@ -3450,7 +3450,7 @@ MonoBehaviour:
   npcMaxAmount: 10
   NPCprefab: {fileID: 8323601937358741148, guid: ff8b7b7d55a842b49ac0f9b0962a718e, type: 3}
   timer: 0
-  coolDown: 5
+  coolDown: 2.5
   canSpawn: 0
 --- !u!95 &2101926029
 Animator:
