@@ -26,8 +26,12 @@ public class NPCmanager : MonoBehaviour
         timer += Time.deltaTime;
         Spawn();
       // Debug.Log(npcAmount);
+      if (canSpawn == true) 
+        {
+            npcAmount += 1;
+        }
     }
-    private void Spawn()
+    public void Spawn()
     {
         if (npcMaxAmount > npcAmount) //checks the amount of spawned objects compare tha max amount.
 
@@ -43,7 +47,7 @@ public class NPCmanager : MonoBehaviour
         if (canSpawn == true)
         {
             Instantiate(NPCprefab, transform.position, transform.rotation);
-            npcAmount += 1;
+            
             timer = 0;
         }
 
@@ -57,7 +61,7 @@ public class NPCmanager : MonoBehaviour
             canSpawn = false ;
         }
 
-
+        npcAmount += 1;
        
     }
 

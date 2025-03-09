@@ -9,7 +9,7 @@ using UnityEditor.ShaderGraph.Internal;
 
 public class MapGenerator : MonoBehaviour {
 
-	public GameObject player; // Reference to your player prefab
+	//public GameObject player; // Reference to your player prefab
 	//public GameObject npcPrefab, waypointsPrefab; // Reference to your NPC prefab
 	public GameObject groundObject;
 	public int width;
@@ -45,7 +45,7 @@ public class MapGenerator : MonoBehaviour {
 		surface.BuildNavMesh();
 
         // After the NavMesh is generated/baked, place the player
-        PlacePlayer();
+        //PlacePlayer();
 
 		SpawnWayPoints(numberWaypoints);
 		//SpawnNPCs(numberOfNPCs);
@@ -57,7 +57,7 @@ public class MapGenerator : MonoBehaviour {
 		if (Input.GetMouseButtonDown(1)) {
 			GenerateMap();
 			surface.BuildNavMesh();
-			PlacePlayer();
+			//PlacePlayer();
 
 			// delete existing NPCs and spawn new ones
 			GameObject[] go_npcs = GameObject.FindGameObjectsWithTag("NPC");
@@ -474,12 +474,12 @@ public class MapGenerator : MonoBehaviour {
 
 	
 	// another approach that didn't quite work
-	private void PlacePlayer()
-    {
-        Vector3 randomPlayerPos = GetRandomGroundPoint();
+	//private void PlacePlayer()
+  //  {
+  //      Vector3 randomPlayerPos = GetRandomGroundPoint();
 
-		player.transform.position = randomPlayerPos;
-    }
+		//player.transform.position = randomPlayerPos;
+  //  }
 	
     // Call this method to obtain a random point on an object tagged "Ground".
     public Vector3 GetRandomGroundPoint()

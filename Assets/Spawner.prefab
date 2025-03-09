@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4860651813188693823}
   - component: {fileID: 8652423788681346390}
   - component: {fileID: 9163104968961814958}
+  - component: {fileID: 6848005828907215435}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -116,7 +117,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1184931692248382184}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54cdf4fedb5626441905995bb70cc3ce, type: 3}
   m_Name: 
@@ -127,3 +128,16 @@ MonoBehaviour:
   timer: 0
   coolDown: 10
   canSpawn: 0
+--- !u!114 &6848005828907215435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184931692248382184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828fa0c237d23c44e9c4a315a3dd5680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPCprefab: {fileID: 8323601937358741148, guid: ff8b7b7d55a842b49ac0f9b0962a718e, type: 3}
