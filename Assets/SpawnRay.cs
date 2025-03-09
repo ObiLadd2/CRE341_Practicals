@@ -29,13 +29,13 @@ private void Update()
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, wall))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.yellow);
-            Debug.Log("hits walls");
+            //Debug.Log("hits walls");
             canSpawn = false;
         }
         else if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, Ground))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * 1000, Color.white);
-            Debug.Log("hits Ground");
+           // Debug.Log("hits Ground");
 
             
             Spawn();
@@ -79,7 +79,7 @@ private void Update()
        
             
             
-            Debug.Log(spawnAmount);
+           // Debug.Log(spawnAmount);
     }
 
 

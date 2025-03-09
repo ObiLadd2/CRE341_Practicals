@@ -26,7 +26,7 @@ public class PointsManager : MonoBehaviour
     {
       // PlayerPrefs.SetInt("highscore",0);
         //highscore = PlayerPrefs.GetInt("highscore", 0);
-        ScoreText.text = score.ToString() + ": POINTS";
+        ScoreText.text =   "POINTS: " + score.ToString();
         //HighScoreText.text = "HIGHSCORE: " + highscore.ToString();
     }
    
@@ -40,6 +40,11 @@ public class PointsManager : MonoBehaviour
       //    PlayerPrefs.SetInt("highscore", score);
       //}
 
+    }
+    public void DeletePoints()
+    {
+        score -= 100;
+        ScoreText.text = score.ToString() + ": POINTS";
     }
 
     

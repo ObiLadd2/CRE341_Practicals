@@ -361,9 +361,9 @@ public class MapGenerator : MonoBehaviour {
     void ClearMapMiddle()
     {
 
-        for (int x = 50; x < width-50; x++)
+        for (int x = 45; x < width-45; x++)
         {
-            for (int y =50; y < height-50; y++)
+            for (int y =45; y < height-45; y++)
             {
                 map[x, y] = 0;
             }
