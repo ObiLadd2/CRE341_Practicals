@@ -8,12 +8,13 @@ public class SpawnTrap : MonoBehaviour
     public LayerMask wall;
     public LayerMask Ground;
     public GameObject SpikesPrefab;
-    public GameObject spikePlaceLocation;
+    public GameObject spikeLocation;
+    public GameObject spikeSpawnLocation;
 
-    //PointsManager pm;
-
-    //[SerializeField] private int PointCost = 100;
+   
+    [SerializeField] private int PointCost = 100;
     Vector3 newPosition;
+   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
    [SerializeField] private bool canPlace;
    [SerializeField]  private bool placeableSpot;
@@ -22,19 +23,18 @@ public class SpawnTrap : MonoBehaviour
     void Start()
     {
         newPosition = transform.position;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+      
         if (Input.GetKeyDown(KeyCode.E)) 
         {
-            spikePlaceLocation.transform.Rotate(spikePlaceLocation.transform.rotation.x, spikePlaceLocation.transform.rotation.y,+45f);
+            spikeLocation.transform.Rotate(0, +45, 0);
         }
-        //if(pm.score <= PointCost)
-        //{
-        //    ExceedCost = true;
-        //}
+    
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity,wall))
@@ -42,19 +42,25 @@ public class SpawnTrap : MonoBehaviour
             placeableSpot = false;
           
             Debug.Log("Hit");
-           // spikePlaceLocation.SetActive(false);
+            spikeLocation.SetActive(false);
            
         } else if (Physics.Raycast(ray, out hit, Mathf.Infinity, Ground)){
 
             placeableSpot = true;
-           // spikePlaceLocation.SetActive(true);
+            spikeLocation.SetActive(true);
             newPosition = hit.point;
-            spikePlaceLocation.transform.position = newPosition;
+            spikeLocation.transform.position = newPosition;
+           
+        }
+        if(PointsManager.instance.score <= 0)
+        {
+            canPlace = false;
         }
         if (canPlace == true && placeableSpot == true && Input.GetMouseButtonDown(0))
         {
             Debug.Log("Can Place");
-           Instantiate(SpikesPrefab, spikePlaceLocation.transform.position, spikePlaceLocation.transform.rotation);
+           Instantiate(SpikesPrefab, spikeSpawnLocation.transform.position, spikeSpawnLocation.transform.rotation);
+            PointsManager.instance.DeletePoints(PointCost);
         }
     }
 
@@ -62,6 +68,7 @@ public class SpawnTrap : MonoBehaviour
     public void SpikePlace()
     {
         canPlace = true;
-        spikePlaceLocation.SetActive(true);
+        spikeLocation.SetActive(true);
+        
     }
 }

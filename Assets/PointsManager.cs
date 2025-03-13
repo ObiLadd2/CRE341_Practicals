@@ -15,7 +15,7 @@ public class PointsManager : MonoBehaviour
     //public TextMeshProUGUI HighScoreText;
     
 
-    public int score = 0;
+    public int score;
   // public int highscore = 0;
     // Start is called before the first frame update
     private void Awake()
@@ -26,10 +26,17 @@ public class PointsManager : MonoBehaviour
     {
       // PlayerPrefs.SetInt("highscore",0);
         //highscore = PlayerPrefs.GetInt("highscore", 0);
-        ScoreText.text =   "POINTS: " + score.ToString();
+        ScoreText.text = score.ToString() + ": POINTS";
         //HighScoreText.text = "HIGHSCORE: " + highscore.ToString();
     }
-   
+    private void Update()
+    {
+        if (score <= 0) 
+        { 
+        score = 0;
+        }
+        ScoreText.text = score.ToString() + ": POINTS";
+    }
 
     public void AddPoints()
     {
@@ -41,9 +48,9 @@ public class PointsManager : MonoBehaviour
       //}
 
     }
-    public void DeletePoints()
+    public void DeletePoints(int cost)
     {
-        score -= 100;
+        score -= cost;
         ScoreText.text = score.ToString() + ": POINTS";
     }
 
