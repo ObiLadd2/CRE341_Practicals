@@ -10,13 +10,19 @@ public class Move_NPC : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
+       
     }
 
     // Update is called once per frame
     void Update()
     {
         // Move the NPC to the player
-        agent.SetDestination(player.transform.position);
+        //agent.SetDestination(player.transform.position);
 
+    }
+
+    private void FixedUpdate()
+    {
+        agent.SetDestination(player.transform.position);
     }
 }

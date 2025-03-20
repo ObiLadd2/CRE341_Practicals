@@ -10,18 +10,19 @@ using UnityEditor.ShaderGraph.Internal;
 public class MapGenerator : MonoBehaviour {
 
 	//public GameObject player; // Reference to your player prefab
-	//public GameObject npcPrefab, waypointsPrefab; // Reference to your NPC prefab
+	public GameObject npcPrefab, waypointsPrefab; // Reference to your NPC prefab
 	public GameObject groundObject;
 	public int width;
 	public int height;
 
 	public string seed;
 	public bool useRandomSeed;
+	public Collider NoSpawnZone;
 
 	[Range(0,58)]
 	public int randomFillPercent;
 
-	//[SerializeField] int numberOfNPCs = 5;
+	[SerializeField] int numberOfNPCs = 5;
 	[SerializeField] List<GameObject> npcs = new List<GameObject>();
 	[SerializeField] int numberWaypoints = 4;
 	[SerializeField] List<GameObject> waypoints = new List<GameObject>();
@@ -48,28 +49,30 @@ public class MapGenerator : MonoBehaviour {
         //PlacePlayer();
 
 		SpawnWayPoints(numberWaypoints);
-		//SpawnNPCs(numberOfNPCs);
+		SpawnNPCs(numberOfNPCs);
 	}
 
 
 
     void Update() {
-		if (Input.GetMouseButtonDown(1)) {
-			GenerateMap();
-			surface.BuildNavMesh();
-			//PlacePlayer();
+		
+		surface.BuildNavMesh();
+		//if (Input.GetMouseButtonDown(1)) {
+		//	GenerateMap();
+			
+		//	//PlacePlayer();
 
-			// delete existing NPCs and spawn new ones
-			GameObject[] go_npcs = GameObject.FindGameObjectsWithTag("NPC");
-			foreach (GameObject npc in go_npcs) Destroy(npc);
+		//	// delete existing NPCs and spawn new ones
+		//	GameObject[] go_npcs = GameObject.FindGameObjectsWithTag("NPC");
+		//	foreach (GameObject npc in go_npcs) Destroy(npc);
 
 
-			GameObject[] go_wps = GameObject.FindGameObjectsWithTag("Waypoint");
-			foreach (GameObject wp in go_wps) Destroy(wp);
+		//	GameObject[] go_wps = GameObject.FindGameObjectsWithTag("Waypoint");
+		//	foreach (GameObject wp in go_wps) Destroy(wp);
 
-			SpawnWayPoints(numberWaypoints);
+		//	SpawnWayPoints(numberWaypoints);
 			//SpawnNPCs(numberOfNPCs);
-		}
+		//}
 	}
 
 	void GenerateMap() {
@@ -508,42 +511,48 @@ public class MapGenerator : MonoBehaviour {
         Debug.LogWarning("No valid 'Ground' point found.");
         return Vector3.zero;
 	}
-	//private void SpawnNPCs(int count)
-	//{
-	//	int maxAttempts = 1000;
-	//	for (int i = 0; i < count; i++)
-	//	{
-	//		Vector3 randomNPCPos = Vector3.zero;
-	//		bool validPositionFound = false;
-	//		int attempts = 0;
+    private void SpawnNPCs(int count)
+    {
+        int maxAttempts = 1000;
+        for (int i = 0; i < count; i++)
+        {
+            Vector3 randomNPCPos = Vector3.zero;
+            bool validPositionFound = false;
+            int attempts = 0;
 
-	//		while (!validPositionFound && attempts < maxAttempts)
-	//		{
-	//			randomNPCPos = GetRandomGroundPoint();
-	//			if (randomNPCPos != Vector3.zero)
-	//			{
-	//				NavMeshHit hit;
-	//				if (NavMesh.SamplePosition(randomNPCPos, out hit, 1.0f, NavMesh.AllAreas))
-	//				{
-	//					randomNPCPos = hit.position;
-	//					validPositionFound = true;
-	//				}
-	//			}
-	//			attempts++;
-	//		}
+            while (!validPositionFound && attempts < maxAttempts)
+            {
+                randomNPCPos = GetRandomGroundPoint();
+                if (randomNPCPos != Vector3.zero)
+                {
+                    NavMeshHit hit;
+                    if (NavMesh.SamplePosition(randomNPCPos, out hit, 1.0f, NavMesh.AllAreas))
+                    {
+                        randomNPCPos = hit.position;
 
-	//		if (validPositionFound)
-	//		{
-	//			Instantiate(npcPrefab, randomNPCPos, Quaternion.identity);
-	//			// add the NPC to the list
-	//			npcs.Add(npcPrefab);
-	//		}
-	//		else
-	//		{
-	//			Debug.LogWarning("Failed to find a valid NavMesh point for NPC.");
-	//		}
-	//	}
-	//}
+                        if (!NoSpawnZone.bounds.Contains(randomNPCPos))
+                        {
+                            validPositionFound = true;
+                            Debug.Log("Bounds does not contain the point : " + randomNPCPos);
+                        }
+                    }
+                }
+                attempts++;
+            }
+
+            if (validPositionFound)
+            {
+                Instantiate(npcPrefab, randomNPCPos, Quaternion.identity);
+                // add the NPC to the list
+                npcs.Add(npcPrefab);
+				Debug.Log("NPC SPAWNED");
+            }
+            else
+            {
+                Debug.LogWarning("Failed to find a valid NavMesh point for NPC.");
+            }
+        }
+    }
 
     private void SpawnWayPoints(int count)
 	{

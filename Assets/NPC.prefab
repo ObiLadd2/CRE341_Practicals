@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7692472045123567575}
-  - component: {fileID: 7431691942173474740}
   - component: {fileID: 3924797085144233977}
   - component: {fileID: 2952817390885913692}
   - component: {fileID: 4702284349999275734}
   - component: {fileID: 4055748125119446354}
   - component: {fileID: 8789674930451373052}
   - component: {fileID: -2005987019832336797}
+  - component: {fileID: 193942737103418375}
   m_Layer: 0
   m_Name: NPC
   m_TagString: broke
@@ -32,20 +32,12 @@ Transform:
   m_GameObject: {fileID: 8323601937358741148}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7431691942173474740
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8323601937358741148}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &3924797085144233977
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -100,19 +92,19 @@ NavMeshAgent:
   m_GameObject: {fileID: 8323601937358741148}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.25
+  m_Radius: 1.25
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1.17
-  m_BaseOffset: 0.54
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_AutoRepath: 0
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 2
 --- !u!114 &4702284349999275734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,7 +149,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.9, y: 0.9, z: 0.9}
+  m_Size: {x: 1, y: 1.9, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &-2005987019832336797
 Rigidbody:
@@ -186,3 +178,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!33 &193942737103418375
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8323601937358741148}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
