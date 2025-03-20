@@ -32,7 +32,7 @@ public class SpawnTrap : MonoBehaviour
       
         if (Input.GetKeyDown(KeyCode.E)) 
         {
-            spikeLocation.transform.Rotate(0, 0,+45 );
+            spikeLocation.transform.Rotate(0, +45, 0);
         }
     
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -42,7 +42,7 @@ public class SpawnTrap : MonoBehaviour
             placeableSpot = false;
           
             Debug.Log("Hit");
-            spikeLocation.SetActive(false);
+            
            
         } else if (Physics.Raycast(ray, out hit, Mathf.Infinity, Ground)){
 
@@ -61,7 +61,6 @@ public class SpawnTrap : MonoBehaviour
             Debug.Log("Can Place");
            Instantiate(SpikesPrefab, spikeSpawnLocation.transform.position, spikeSpawnLocation.transform.rotation);
             PointsManager.instance.DeletePoints(PointCost);
-            spikeLocation.SetActive(false );
         }
     }
 
