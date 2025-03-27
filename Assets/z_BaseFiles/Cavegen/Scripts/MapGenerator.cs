@@ -8,9 +8,8 @@ using Random = UnityEngine.Random;
 using UnityEditor.ShaderGraph.Internal;
 
 public class MapGenerator : MonoBehaviour {
-
-	//public GameObject player; // Reference to your player prefab
-	public GameObject npcPrefab, waypointsPrefab; // Reference to your NPC prefab
+    #region Variables
+ public GameObject npcPrefab, waypointsPrefab; // Reference to your NPC prefab
 	public GameObject groundObject;
 	public int width;
 	public int height;
@@ -33,6 +32,11 @@ public class MapGenerator : MonoBehaviour {
 	[SerializeField] private float raycastHeight = 50f; // Height above the plane from which to cast rays.
     [SerializeField] private int maxAttempts = 1000; // Safety limit to avoid an infinite loop.
 
+
+
+    #endregion
+    //public GameObject player; // Reference to your player prefab
+   
 	void Start() {
 
 
@@ -56,7 +60,7 @@ public class MapGenerator : MonoBehaviour {
 
     void Update() {
 		
-		surface.BuildNavMesh();
+		//surface.BuildNavMesh();
 		//if (Input.GetMouseButtonDown(1)) {
 		//	GenerateMap();
 			
@@ -74,8 +78,8 @@ public class MapGenerator : MonoBehaviour {
 			//SpawnNPCs(numberOfNPCs);
 		//}
 	}
-
-	void GenerateMap() {
+    #region MapGeneration
+void GenerateMap() {
 		map = new int[width,height];
 		RandomFillMap();
 
@@ -475,6 +479,8 @@ public class MapGenerator : MonoBehaviour {
 		}
 	}
 
+    #endregion
+    
 	
 	// another approach that didn't quite work
 	//private void PlacePlayer()
@@ -511,7 +517,8 @@ public class MapGenerator : MonoBehaviour {
         Debug.LogWarning("No valid 'Ground' point found.");
         return Vector3.zero;
 	}
-    private void SpawnNPCs(int count)
+    #region NPC Spawning
+ private void SpawnNPCs(int count)
     {
         int maxAttempts = 1000;
         for (int i = 0; i < count; i++)
@@ -533,7 +540,7 @@ public class MapGenerator : MonoBehaviour {
                         if (!NoSpawnZone.bounds.Contains(randomNPCPos))
                         {
                             validPositionFound = true;
-                            Debug.Log("Bounds does not contain the point : " + randomNPCPos);
+                          //Debug.Log("Bounds does not contain the point : " + randomNPCPos);
                         }
                     }
                 }
@@ -553,6 +560,8 @@ public class MapGenerator : MonoBehaviour {
             }
         }
     }
+    #endregion
+   
 
     private void SpawnWayPoints(int count)
 	{

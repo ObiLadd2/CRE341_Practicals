@@ -6,7 +6,7 @@ public class PlayerHealth : MonoBehaviour
 
     public int maxHealth = 100;
     public int currentHealth;
-
+    public int Damage;
     public HealthBar healthbar;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,10 +23,11 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("GameOver");
         }
     }
-    public void OnCollisionEnter(Collision col)
+   
+    public void OnTriggerEnter(Collider other)
     {
-        TakeDamage(20);
-        Destroy(col.gameObject);
+        Destroy(other.gameObject);
+        TakeDamage(Damage);
     }
 
     void TakeDamage(int damage)
