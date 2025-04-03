@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8219727533022485020}
   - component: {fileID: 6194316380102029014}
   - component: {fileID: 4400672912924644709}
-  - component: {fileID: 7625592477061381790}
   - component: {fileID: 6306664469106754278}
+  - component: {fileID: 8268646016967248595}
   m_Layer: 0
   m_Name: Spikes
   m_TagString: Trap
@@ -29,13 +29,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5689838112162893571}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -28.47, y: -2.2604873, z: -42.58139}
-  m_LocalScale: {x: 100, y: 100, z: 200}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8219727533022485020
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -103,30 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed48faa283d9b494cab6358f84f6eb01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SparksVFX: {fileID: 0}
-  SparkPoint: {fileID: 0}
   _damage: 50
---- !u!65 &7625592477061381790
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5689838112162893571}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.01, y: 0.17999996, z: 0.012395113}
-  m_Center: {x: 0, y: 0.014999998, z: -0.0011975572}
 --- !u!54 &6306664469106754278
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -154,3 +131,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &8268646016967248595
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5689838112162893571}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.01, y: 0.012395121, z: 0.17999999}
+  m_Center: {x: 0, y: 0.0035167548, z: 0}

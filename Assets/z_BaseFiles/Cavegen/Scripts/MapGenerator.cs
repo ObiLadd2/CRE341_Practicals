@@ -21,9 +21,9 @@ public class MapGenerator : MonoBehaviour {
 	[Range(0,58)]
 	public int randomFillPercent;
 
-	[SerializeField] int numberOfNPCs = 5;
+	//[SerializeField] int numberOfNPCs = 5;
 	[SerializeField] List<GameObject> npcs = new List<GameObject>();
-	[SerializeField] int numberWaypoints = 4;
+	//[SerializeField] int numberWaypoints = 4;
 	[SerializeField] List<GameObject> waypoints = new List<GameObject>();
 
 	int[,] map;
@@ -52,8 +52,8 @@ public class MapGenerator : MonoBehaviour {
         // After the NavMesh is generated/baked, place the player
         //PlacePlayer();
 
-		SpawnWayPoints(numberWaypoints);
-		SpawnNPCs(numberOfNPCs);
+		
+		
 	}
 
 
@@ -78,7 +78,7 @@ public class MapGenerator : MonoBehaviour {
 			//SpawnNPCs(numberOfNPCs);
 		//}
 	}
-    #region MapGeneration
+   
 void GenerateMap() {
 		map = new int[width,height];
 		RandomFillMap();
@@ -479,7 +479,7 @@ void GenerateMap() {
 		}
 	}
 
-    #endregion
+    
     
 	
 	// another approach that didn't quite work
@@ -517,8 +517,8 @@ void GenerateMap() {
         Debug.LogWarning("No valid 'Ground' point found.");
         return Vector3.zero;
 	}
-    #region NPC Spawning
- private void SpawnNPCs(int count)
+    
+ public void SpawnNPCs(int count)
     {
         int maxAttempts = 1000;
         for (int i = 0; i < count; i++)
@@ -560,7 +560,7 @@ void GenerateMap() {
             }
         }
     }
-    #endregion
+   
    
 
     private void SpawnWayPoints(int count)

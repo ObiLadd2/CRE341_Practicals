@@ -3,13 +3,32 @@ using RootMotion.FinalIK;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum TrapSelector
+{
+    NoTrap,
+    Spike,
+    SpinBlade
+}
 public class SpawnTrap : MonoBehaviour
 {
+
+    TrapSelector trapSelector;
+    private int trapCost;
+
+
     public LayerMask wall;
     public LayerMask Ground;
     public GameObject SpikesPrefab;
+    public GameObject spinBladePrefab;
+
+    HeaderAttribute Traps;
+    public GameObject SpinBladeLocation;
     public GameObject spikeLocation;
-    public GameObject spikeSpawnLocation;
+
+
+
+    public GameObject TrapSpawnLocation;
+
 
    
     [SerializeField] private int PointCost = 100;
@@ -29,39 +48,47 @@ public class SpawnTrap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
-        if (Input.GetKeyDown(KeyCode.E)) 
+      if(PointsManager.instance.score <= PointCost)
         {
-            spikeLocation.transform.Rotate(0, +45, 0);
+            canPlace = false;
         }
-    
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+       
+        if (trapSelector != TrapSelector.NoTrap) 
+        { 
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity,wall))
-        {
+           if (Input.GetKeyDown(KeyCode.E)) 
+            {
+            TrapSpawnLocation.transform.Rotate(0, +45, 0);
+            }
+       
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+           if (Physics.Raycast(ray, out hit, Mathf.Infinity,wall))
+           {
             placeableSpot = false;
           
             Debug.Log("Hit");
-            
-           
-        } else if (Physics.Raycast(ray, out hit, Mathf.Infinity, Ground)){
+           } else if (Physics.Raycast(ray, out hit, Mathf.Infinity, Ground))
+           {
 
             placeableSpot = true;
             
             newPosition = hit.point;
-            spikeLocation.transform.position = newPosition;
+            TrapSpawnLocation.transform.position = newPosition;
            
-        }
-        if(PointsManager.instance.score <= 0)
-        {
-            canPlace = false;
-        }
-        if (canPlace == true && placeableSpot == true && Input.GetMouseButtonDown(0))
-        {
+           }
+        
+           if (canPlace == true && placeableSpot == true && Input.GetMouseButtonDown(0))
+           {
             Debug.Log("Can Place");
-           Instantiate(SpikesPrefab, spikeSpawnLocation.transform.position, spikeSpawnLocation.transform.rotation);
+            Instantiate(SpikesPrefab, TrapSpawnLocation.transform.position, TrapSpawnLocation.transform.rotation);
             PointsManager.instance.DeletePoints(PointCost);
-        }
+                trapSelector = TrapSelector.NoTrap;
+           }
+        } else{Debug.Log("Cannot place trap"); }
+        
+            
+
     }
 
     
@@ -69,6 +96,13 @@ public class SpawnTrap : MonoBehaviour
     {
         canPlace = true;
         spikeLocation.SetActive(true);
+        trapSelector = TrapSelector.Spike;
         
+    }
+    public void SpinBladePlace()
+    {
+        canPlace = true;
+        trapSelector = TrapSelector.SpinBlade;
+
     }
 }

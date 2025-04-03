@@ -38,15 +38,11 @@ public class PointsManager : MonoBehaviour
         ScoreText.text = score.ToString() + ": POINTS";
     }
 
-    public void AddPoints()
+    public void AddPoints(int gainPoints)
     {
-        score += 100;
+        score += gainPoints;
         ScoreText.text = score.ToString() + ": POINTS";
-      //if(highscore < score)
-      //{
-      //    PlayerPrefs.SetInt("highscore", score);
-      //}
-
+     
     }
     public void DeletePoints(int cost)
     {

@@ -7,8 +7,8 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
 
-    public GameObject SparksVFX;
-    public GameObject SparkPoint;
+    //public GameObject SparksVFX;
+    //public GameObject SparkPoint;
     public float _damage;
 
 

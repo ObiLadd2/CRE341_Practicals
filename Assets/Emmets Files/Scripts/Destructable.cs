@@ -12,9 +12,13 @@ public class Destructable : MonoBehaviour
     //public  GameObject broken;
    
     public float health = 100;
+    [SerializeField]  private int pointsGainOnDeath;
 
     //private Transform brokenObject;
-    
+    public void Start()
+    {
+        
+    }
 
     public float Health
     {
@@ -34,9 +38,11 @@ public class Destructable : MonoBehaviour
     }
     // When the destuctable object looses all its health the object is detroyed and a broken version of the object is instaciated.
   public void breakObject()
-    {
+    {  
+        PointsManager.instance.AddPoints(pointsGainOnDeath);
+        GameStateManager.instance.npcAmount -= 1;
         Destroy(gameObject);
-        //Instantiate(broken,transform.position,transform.rotation);
-        //PointsManager.instance.AddPoints();
+      
+       
     }
 }
