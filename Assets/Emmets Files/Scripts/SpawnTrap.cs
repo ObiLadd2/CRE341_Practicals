@@ -1,5 +1,7 @@
 using DG.Tweening;
+using NUnit.Framework;
 using RootMotion.FinalIK;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,14 +14,15 @@ public enum TrapSelector
 public class SpawnTrap : MonoBehaviour
 {
 
-    TrapSelector trapSelector;
-    private int trapCost;
+    #region Variables    
+    [SerializeField] TrapSelector trapSelector;
+
+    PointsManager PM;
 
 
     public LayerMask wall;
     public LayerMask Ground;
-    public GameObject SpikesPrefab;
-    public GameObject spinBladePrefab;
+
 
     HeaderAttribute Traps;
     public GameObject SpinBladeLocation;
@@ -28,26 +31,29 @@ public class SpawnTrap : MonoBehaviour
 
 
     public GameObject TrapSpawnLocation;
+    public List<GameObject> TrapType = new List<GameObject>();
+    public List<GameObject> TrapTypeLocation = new List<GameObject>();
+    private int DetermineTrapType;
 
-
-   
-    [SerializeField] private int PointCost = 100;
+     private int PointCost;
     Vector3 newPosition;
    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-   [SerializeField] private bool canPlace;
-   [SerializeField]  private bool placeableSpot;
-    //[SerializeField] private bool ExceedCost;
+   private bool canPlace;
+   private bool placeableSpot;
+   
     RaycastHit hit;
+    #endregion 
     void Start()
     {
         newPosition = transform.position;
-        
+        PM = GetComponent<PointsManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+       PM.TrapCostUI.text = PointCost.ToString() + "Cost";
       if(PointsManager.instance.score <= PointCost)
         {
             canPlace = false;
@@ -70,6 +76,7 @@ public class SpawnTrap : MonoBehaviour
             Debug.Log("Hit");
            } else if (Physics.Raycast(ray, out hit, Mathf.Infinity, Ground))
            {
+                TrapTypeLocation[DetermineTrapType].SetActive(true);
 
             placeableSpot = true;
             
@@ -77,14 +84,18 @@ public class SpawnTrap : MonoBehaviour
             TrapSpawnLocation.transform.position = newPosition;
            
            }
+          
         
            if (canPlace == true && placeableSpot == true && Input.GetMouseButtonDown(0))
            {
             Debug.Log("Can Place");
-            Instantiate(SpikesPrefab, TrapSpawnLocation.transform.position, TrapSpawnLocation.transform.rotation);
+                
+                Instantiate(TrapType[DetermineTrapType], TrapSpawnLocation.transform.position, TrapSpawnLocation.transform.rotation);
             PointsManager.instance.DeletePoints(PointCost);
                 trapSelector = TrapSelector.NoTrap;
-           }
+                
+                TrapTypeLocation[DetermineTrapType].SetActive(false);
+            }
         } else{Debug.Log("Cannot place trap"); }
         
             
@@ -95,14 +106,21 @@ public class SpawnTrap : MonoBehaviour
     public void SpikePlace()
     {
         canPlace = true;
-        spikeLocation.SetActive(true);
+        TrapTypeLocation[1].SetActive(false );
         trapSelector = TrapSelector.Spike;
+        DetermineTrapType = 0;
+
+        PointCost = 100;
         
     }
     public void SpinBladePlace()
     {
         canPlace = true;
+        TrapTypeLocation[0].SetActive(false);
         trapSelector = TrapSelector.SpinBlade;
+        DetermineTrapType = 1;
+        PointCost = 150;
+        
 
     }
 }

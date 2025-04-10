@@ -9,16 +9,13 @@ using UnityEngine.UIElements;
 
 public class Destructable : MonoBehaviour
 {
-    //public  GameObject broken;
+   
    
     public float health = 100;
     [SerializeField]  private int pointsGainOnDeath;
 
-    //private Transform brokenObject;
-    public void Start()
-    {
-        
-    }
+   
+   
 
     public float Health
     {
@@ -40,7 +37,7 @@ public class Destructable : MonoBehaviour
   public void breakObject()
     {  
         PointsManager.instance.AddPoints(pointsGainOnDeath);
-        GameStateManager.instance.npcAmount -= 1;
+        GameStateManager.instance.curentAmount -= 1;
         Destroy(gameObject);
       
        

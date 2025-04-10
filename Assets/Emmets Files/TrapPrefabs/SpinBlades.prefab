@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 932e9247ccfab8c48aa7db14945e1697, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 12.410891
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 932e9247ccfab8c48aa7db14945e1697, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 4.5200024
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 932e9247ccfab8c48aa7db14945e1697, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 6.5934625
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 932e9247ccfab8c48aa7db14945e1697, type: 3}
       propertyPath: m_LocalRotation.w
@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpinBlades
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 932e9247ccfab8c48aa7db14945e1697, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -68,6 +72,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 932e9247ccfab8c48aa7db14945e1697, type: 3}
       insertIndex: -1
       addedObject: {fileID: 608283842855002974}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 932e9247ccfab8c48aa7db14945e1697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 962029253152171258}
   m_SourcePrefab: {fileID: 100100000, guid: 932e9247ccfab8c48aa7db14945e1697, type: 3}
 --- !u!1 &4460590859866661728 stripped
 GameObject:
@@ -86,8 +93,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed48faa283d9b494cab6358f84f6eb01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SparksVFX: {fileID: 0}
-  SparkPoint: {fileID: 0}
   _damage: 100
 --- !u!135 &7397773664748250624
 SphereCollider:
@@ -159,3 +164,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!208 &962029253152171258
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4460590859866661728}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.75, y: 1, z: 0.75}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 1, z: 0}
+  m_TimeToStationary: 0.5

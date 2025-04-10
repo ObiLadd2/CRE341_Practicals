@@ -10,9 +10,11 @@ public class GameStateManager : MonoBehaviour
     public MapGenerator mapGenerator;
 
    
-    public  int npcAmount;//the number of npcs that will spawn
-    public int curentAmount;// current number of npcs on the board
-    public int RestartSequenceAtThisAmount = 0;// wouldnt switch state hwen curentamount was 0 so checking for different kind of value.
+    public  int npcAmount;  //the number of npcs that will spawn
+    public int curentAmount;  // current number of npcs on the board
+    public int round; // current Round
+
+   // public int RestartSequenceAtThisAmount = 0;// wouldnt switch state hwen curentamount was 0 so checking for different kind of value.
     public GameObject Playbutton;
                             
     BaseGameState CurentState;
@@ -37,7 +39,8 @@ public class GameStateManager : MonoBehaviour
     {
         CurentState.UpdateState(this);
         Debug.Log(CurentState);
-        
+
+       
     }
     public void SwitchState(BaseGameState state)
     {
@@ -53,7 +56,8 @@ public class GameStateManager : MonoBehaviour
     public void StartSpawnSequence()//starts the spawning sequence when the player presses play
     {
        SwitchState(gameState1);//swiches states to gradually increase the amount of enemies spawning
-        
+        round += 1;
         Playbutton.SetActive(false);
+        Debug.Log(round);
     }
 }

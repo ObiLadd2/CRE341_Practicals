@@ -13,7 +13,7 @@ public class PointsManager : MonoBehaviour
     
     public TextMeshProUGUI ScoreText;
     //public TextMeshProUGUI HighScoreText;
-    
+    public TextMeshProUGUI TrapCostUI;
 
     public int score;
   // public int highscore = 0;
@@ -27,6 +27,7 @@ public class PointsManager : MonoBehaviour
       // PlayerPrefs.SetInt("highscore",0);
         //highscore = PlayerPrefs.GetInt("highscore", 0);
         ScoreText.text = score.ToString() + ": POINTS";
+        TrapCostUI.text = null;
         //HighScoreText.text = "HIGHSCORE: " + highscore.ToString();
     }
     private void Update()
@@ -46,6 +47,7 @@ public class PointsManager : MonoBehaviour
     }
     public void DeletePoints(int cost)
     {
+        TrapCostUI.text = cost.ToString() + " Cost";
         score -= cost;
         ScoreText.text = score.ToString() + ": POINTS";
     }

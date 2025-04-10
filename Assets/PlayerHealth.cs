@@ -28,7 +28,7 @@ public class PlayerHealth : MonoBehaviour
     {
         Destroy(other.gameObject);
         TakeDamage(Damage);
-        GameStateManager.instance.npcAmount -= 1; // decreased the npc amount value when they reach the centre.
+        GameStateManager.instance.curentAmount -= 1; // decreased the npc amount value when they reach the centre.
     }
 
     void TakeDamage(int damage)

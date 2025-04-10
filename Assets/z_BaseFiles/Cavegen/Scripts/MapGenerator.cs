@@ -6,10 +6,11 @@ using Unity.AI.Navigation;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 using UnityEditor.ShaderGraph.Internal;
+using Unity.VisualScripting;
 
 public class MapGenerator : MonoBehaviour {
     #region Variables
- public GameObject npcPrefab, waypointsPrefab; // Reference to your NPC prefab
+ //public GameObject npcPrefab, waypointsPrefab; // Reference to your NPC prefab
 	public GameObject groundObject;
 	public int width;
 	public int height;
@@ -22,9 +23,10 @@ public class MapGenerator : MonoBehaviour {
 	public int randomFillPercent;
 
 	//[SerializeField] int numberOfNPCs = 5;
-	[SerializeField] List<GameObject> npcs = new List<GameObject>();
-	//[SerializeField] int numberWaypoints = 4;
-	[SerializeField] List<GameObject> waypoints = new List<GameObject>();
+	//[SerializeField] List<GameObject> npcTypes = new List<GameObject>();
+    public List<GameObject> npcPrefabs = new List<GameObject>();
+    //[SerializeField] int numberWaypoints = 4;
+    [SerializeField] List<GameObject> waypoints = new List<GameObject>();
 
 	int[,] map;
 
@@ -32,7 +34,7 @@ public class MapGenerator : MonoBehaviour {
 	[SerializeField] private float raycastHeight = 50f; // Height above the plane from which to cast rays.
     [SerializeField] private int maxAttempts = 1000; // Safety limit to avoid an infinite loop.
 
-
+	public GameStateManager GM;
 
     #endregion
     //public GameObject player; // Reference to your player prefab
@@ -48,6 +50,7 @@ public class MapGenerator : MonoBehaviour {
 
         GenerateMap();
 		surface.BuildNavMesh();
+		
 
         // After the NavMesh is generated/baked, place the player
         //PlacePlayer();
@@ -549,10 +552,13 @@ void GenerateMap() {
 
             if (validPositionFound)
             {
-                Instantiate(npcPrefab, randomNPCPos, Quaternion.identity);
-                // add the NPC to the list
-                npcs.Add(npcPrefab);
-				Debug.Log("NPC SPAWNED");
+				if (GM.round < 5) { Instantiate(npcPrefabs[0], randomNPCPos, Quaternion.identity); Debug.Log("NPC SPAWNED"); } 
+				if (GM.round >= 5) { Instantiate(npcPrefabs[1], randomNPCPos, Quaternion.identity); Debug.Log("NPC SPAWNED"); }
+				
+                   
+                    // add the NPC to the list
+                    // npcs.Add(npcPrefab);
+                    
             }
             else
             {
