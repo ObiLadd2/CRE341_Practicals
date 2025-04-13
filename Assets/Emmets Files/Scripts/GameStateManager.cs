@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +17,7 @@ public class GameStateManager : MonoBehaviour
 
    // public int RestartSequenceAtThisAmount = 0;// wouldnt switch state hwen curentamount was 0 so checking for different kind of value.
     public GameObject Playbutton;
-                            
+    public TextMeshProUGUI RoundCounter;                      
     BaseGameState CurentState;
     public GameStateStart gameStateStart = new GameStateStart();
     public GameState1 gameState1 = new GameState1();
@@ -39,7 +40,7 @@ public class GameStateManager : MonoBehaviour
     {
         CurentState.UpdateState(this);
         Debug.Log(CurentState);
-
+        RoundCounter.text = "Round: " + round.ToString();
        
     }
     public void SwitchState(BaseGameState state)

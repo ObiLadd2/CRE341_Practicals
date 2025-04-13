@@ -110,7 +110,7 @@ public class SpawnTrap : MonoBehaviour
         trapSelector = TrapSelector.Spike;
         DetermineTrapType = 0;
 
-        PointCost = 100;
+        PointCost = 50;
         
     }
     public void SpinBladePlace()
