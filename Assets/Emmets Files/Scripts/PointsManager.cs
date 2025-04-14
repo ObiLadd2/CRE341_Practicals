@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+#if UNITY_EDITOR
 using UnityEditor.Rendering;
+#endif
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -47,7 +49,7 @@ public class PointsManager : MonoBehaviour
     }
     public void DeletePoints(int cost)
     {
-        TrapCostUI.text = cost.ToString() + " Cost";
+        TrapCostUI.text = cost.ToString() + ": Cost";
         score -= cost;
         ScoreText.text = score.ToString() + ": POINTS";
     }
