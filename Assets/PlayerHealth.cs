@@ -1,5 +1,6 @@
 using RootMotion.Demos;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
-            Application.Quit();
+            SceneManager.LoadScene(0);
             Debug.Log("GameOver");
         }
     }

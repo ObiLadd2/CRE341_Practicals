@@ -554,11 +554,12 @@ void GenerateMap() {
             {
 				if (GM.round < 5) { Instantiate(npcPrefabs[0], randomNPCPos, Quaternion.identity); Debug.Log("NPC SPAWNED"); } 
 				if (GM.round >= 5) { Instantiate(npcPrefabs[1], randomNPCPos, Quaternion.identity); Debug.Log("NPC SPAWNED"); }
-				
-                   
-                    // add the NPC to the list
-                    // npcs.Add(npcPrefab);
-                    
+                if (GM.round >= 10) { Instantiate(npcPrefabs[2], randomNPCPos, Quaternion.identity); Debug.Log("NPC SPAWNED"); }
+
+
+                // add the NPC to the list
+                // npcs.Add(npcPrefab);
+
             }
             else
             {

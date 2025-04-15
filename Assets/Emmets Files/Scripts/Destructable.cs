@@ -41,7 +41,8 @@ public class Destructable : MonoBehaviour
         PointsManager.instance.AddPoints(pointsGainOnDeath);
         GameStateManager.instance.curentAmount -= 1;
         Destroy(gameObject);
-      
-       
+        SoundManager.Playsound(SoundType.EnemyDeath);
+
+
     }
 }

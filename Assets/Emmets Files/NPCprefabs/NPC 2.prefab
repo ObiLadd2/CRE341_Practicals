@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -2005987019832336797}
   - component: {fileID: 193942737103418375}
   m_Layer: 0
-  m_Name: NPC 1
+  m_Name: NPC 2
   m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 51d71f2032efda84dad9cf0af50772c9, type: 2}
+  - {fileID: 2100000, guid: a030f7d1f8b5894428b904628641c8b4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -131,8 +131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 495f1214e5effdb46b2c9cf7a87d863b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 200
-  pointsGainOnDeath: 50
+  health: 300
+  pointsGainOnDeath: 100
 --- !u!65 &8789674930451373052
 BoxCollider:
   m_ObjectHideFlags: 0
