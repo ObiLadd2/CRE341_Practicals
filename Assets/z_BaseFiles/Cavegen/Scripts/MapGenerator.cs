@@ -5,7 +5,7 @@ using System;
 using Unity.AI.Navigation;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
-using UnityEditor.ShaderGraph.Internal;
+
 using Unity.VisualScripting;
 
 public class MapGenerator : MonoBehaviour {

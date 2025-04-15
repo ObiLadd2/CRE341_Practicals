@@ -934,6 +934,7 @@ GameObject:
   - component: {fileID: 509230442}
   - component: {fileID: 509230444}
   - component: {fileID: 509230445}
+  - component: {fileID: 509230446}
   m_Layer: 7
   m_Name: Map Generator
   m_TagString: Untagged
@@ -1017,6 +1018,19 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 0
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &509230446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509230441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed48faa283d9b494cab6358f84f6eb01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 1000
 --- !u!1 &631091595
 GameObject:
   m_ObjectHideFlags: 0
@@ -1944,7 +1958,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.23333333
+  m_VoxelSize: 0.16666667
   m_MinRegionArea: 1
   m_NavMeshData: {fileID: 23800000, guid: 46eb3b4449ce54c44a165c64857c8376, type: 2}
   m_BuildHeightMesh: 0
