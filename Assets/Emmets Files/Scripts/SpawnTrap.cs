@@ -54,49 +54,54 @@ public class SpawnTrap : MonoBehaviour
     void Update()
     {
        PM.TrapCostUI.text = PointCost.ToString() + "Cost";
-      if(PointsManager.instance.score <= PointCost)
+        if (PointsManager.instance.score < PointCost)
         {
             canPlace = false;
+            TrapSpawnLocation.SetActive(false);
         }
-       
-        if (trapSelector != TrapSelector.NoTrap) 
+        else
+        {
+            TrapSpawnLocation.SetActive(true);
+        }
+
+            if (trapSelector != TrapSelector.NoTrap) 
         { 
 
-           if (Input.GetKeyDown(KeyCode.E)) 
-            {
-            TrapSpawnLocation.transform.Rotate(0, +45, 0);
-            }
+              if (Input.GetKeyDown(KeyCode.E)) 
+              {
+                 TrapSpawnLocation.transform.Rotate(0, +45, 0);
+              }
        
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+              Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-           if (Physics.Raycast(ray, out hit, Mathf.Infinity,wall))
-           {
-            placeableSpot = false;
+               if (Physics.Raycast(ray, out hit, Mathf.Infinity,wall))
+               {
+                 placeableSpot = false;
           
-            Debug.Log("Hit");
-           } else if (Physics.Raycast(ray, out hit, Mathf.Infinity, Ground))
-           {
+                  Debug.Log("Hit");
+               } else if (Physics.Raycast(ray, out hit, Mathf.Infinity, Ground))
+               {
                 TrapTypeLocation[DetermineTrapType].SetActive(true);
 
-            placeableSpot = true;
+                  placeableSpot = true;
             
-            newPosition = hit.point;
-            TrapSpawnLocation.transform.position = newPosition;
+                   newPosition = hit.point;
+                     TrapSpawnLocation.transform.position = newPosition;
            
-           }
+                }
           
         
-           if (canPlace == true && placeableSpot == true && Input.GetMouseButtonDown(0))
-           {
-            Debug.Log("Can Place");
+                 if (canPlace == true && placeableSpot == true && Input.GetMouseButtonDown(0))
+                 {
+                   Debug.Log("Can Place");
                 
                 Instantiate(TrapType[DetermineTrapType], TrapSpawnLocation.transform.position, TrapSpawnLocation.transform.rotation);
-            PointsManager.instance.DeletePoints(PointCost);
-                trapSelector = TrapSelector.NoTrap;
+                   PointsManager.instance.DeletePoints(PointCost);
+                   trapSelector = TrapSelector.NoTrap;
                 
-                TrapTypeLocation[DetermineTrapType].SetActive(false);
-            }
-        } else{Debug.Log("Cannot place trap"); }
+                   TrapTypeLocation[DetermineTrapType].SetActive(false);
+                 }
+            } else{Debug.Log("Cannot place trap"); }
         
             
 
