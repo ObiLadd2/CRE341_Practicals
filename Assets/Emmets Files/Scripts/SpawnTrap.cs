@@ -71,6 +71,13 @@ public class SpawnTrap : MonoBehaviour
               {
                  TrapSpawnLocation.transform.Rotate(0, +45, 0);
               }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+               
+                trapSelector = TrapSelector.NoTrap;
+                TrapTypeLocation[DetermineTrapType].SetActive(false);
+
+            }
        
               Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
